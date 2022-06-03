@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'repository/image_repository.dart';
 
+import 'widget/timestamp_widget.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -36,18 +38,7 @@ class _HomePageState extends State<HomePage> {
             Positioned(
               left: 18,
               bottom: 18,
-              child: Text(
-                _repository.images.first.time,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(color: Colors.white, shadows: [
-                  Shadow(
-                      offset: Offset(2, 2),
-                      blurRadius: 8.0,
-                      color: Colors.black.withAlpha(125)),
-                ]),
-              ),
+              child: TimestampWidget(timestamp: _repository.images.first.time),
             ),
           ],
         ));
