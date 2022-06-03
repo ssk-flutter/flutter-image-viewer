@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'repository/image_repository.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -10,11 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final images = [
-    "https://i.picsum.photos/id/930/200/300.jpg?hmac=mVMk8tDbj7-Utfz1VfwDV9UYCVrv9H0ktf0m1C0iBek",
-    "https://i.picsum.photos/id/1021/300/200.jpg?hmac=Uwq-p1xg_lU331olJw79oBVMPMWXSnwp5E9SsFgF87g",
-    "https://i.picsum.photos/id/494/100/300.jpg?hmac=MrRNlDX-Ve-g9dAiEsJkOw6RMHDUiUuvZ4DX0iDmN70",
-  ];
+  final ImageRepository _repository = ImageRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class _HomePageState extends State<HomePage> {
                 width: constraints.maxWidth,
                 height: constraints.maxHeight,
                 child: Image.network(
-                  images[2],
+                  _repository.images.first.image,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -39,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               left: 18,
               bottom: 18,
               child: Text(
-                'timestamp here',
+                _repository.images.first.time,
                 style: Theme.of(context)
                     .textTheme
                     .headline6
